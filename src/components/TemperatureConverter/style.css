@@ -1,0 +1,6 @@
+.temperature-unit-wrapper {
+  justify-content: space-around;
+  flex-direction: row !important;
+  padding-top: 1rem;
+  padding-bottom: 2rem;
+}

@@ -1,0 +1,16 @@
+.navigation-wrapper {
+  display: flex;
+  justify-content: space-between;
+}
+.arrow {
+  box-sizing: content-box;
+  padding: 1rem;
+}
+.arrow-left {
+  height: 45px;
+  width: 80px;
+}
+.arrow-right {
+  width: 80px;
+  transform: scaleX(-1);
+}

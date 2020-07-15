@@ -10,6 +10,7 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     height: "100vh",
     flexDirection: "column",
+    backgroundColor: "lightblue",
   },
 }));
 
@@ -24,7 +25,7 @@ export default function Weather() {
   }, []);
 
   return (
-    <Container maxWidth="md" className={classes.root}>
+    <Container maxWidth="sm" className={classes.root}>
       {weatherData ? (
         <>
           <TemperatureConverter />

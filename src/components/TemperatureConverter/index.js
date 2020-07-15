@@ -2,27 +2,26 @@ import React from "react";
 import Radio from "@material-ui/core/Radio";
 import { useSelector, useDispatch } from "react-redux";
 import { changeTemperatureUnit, selectTemperatureUnit } from "./slice";
+import { RadioGroup, FormControlLabel } from "@material-ui/core";
+import "./style.css";
 
 export default function TemperatureConverter() {
   const currentUnit = useSelector(selectTemperatureUnit);
   const dispatch = useDispatch();
 
   return (
-    <div>
-      <Radio
-        checked={currentUnit === "Celcius"}
-        onClick={() => dispatch(changeTemperatureUnit("Celcius"))}
-        value="Celcius"
-        name="radio-button-demo"
-      />
-      Celcius
-      <Radio
-        checked={currentUnit === "Fahrenheit"}
-        onClick={() => dispatch(changeTemperatureUnit("Fahrenheit"))}
+    <RadioGroup
+      name="temperatureUnit"
+      value={currentUnit}
+      onChange={(event) => dispatch(changeTemperatureUnit(event.target.value))}
+      className="temperature-unit-wrapper"
+    >
+      <FormControlLabel value="Celcius" control={<Radio />} label="Celcius" />
+      <FormControlLabel
         value="Fahrenheit"
-        name="radio-button-demo"
+        control={<Radio />}
+        label="Fahrenheit"
       />
-      Fahrenheit
-    </div>
+    </RadioGroup>
   );
 }
