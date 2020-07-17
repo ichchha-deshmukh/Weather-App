@@ -21,7 +21,7 @@ const useStyles = makeStyles((theme) => ({
   paper: {
     height: 200,
     width: CARD_WIDTH - theme.spacing(2),
-    fontSize: 22,
+    fontSize: 20,
     textAlign: "left",
     padding: theme.spacing(2),
     marginLeft: theme.spacing(1),
@@ -73,9 +73,11 @@ export default function WeatherCards() {
                 Date:
               </Typography>
               <div>
-                {new Date(value[0].dt_txt).toLocaleDateString(
-                  ("en-us", { month: "short" })
-                )}
+                {new Date(value[0].dt_txt).toLocaleString("en", {
+                  day: "numeric",
+                  month: "short",
+                  year: "numeric",
+                })}
               </div>
             </Paper>
           </Grid>
