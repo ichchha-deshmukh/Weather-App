@@ -1,9 +1,12 @@
 import React from "react";
-import { makeStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
 import Paper from "@material-ui/core/Paper";
 import { selectActiveCount } from "../Navigation/slice";
+import { showData } from "../Weather/slice";
+import { selectTemperatureUnit } from "../TemperatureConverter/slice";
 import { useSelector } from "react-redux";
+import Typography from "@material-ui/core/Typography";
+import { makeStyles } from "@material-ui/core/styles";
 
 const CARD_WIDTH = 184;
 const useStyles = makeStyles((theme) => ({
@@ -18,7 +21,7 @@ const useStyles = makeStyles((theme) => ({
   paper: {
     height: 200,
     width: CARD_WIDTH - theme.spacing(2),
-    fontSize: 20,
+    fontSize: 22,
     textAlign: "left",
     padding: theme.spacing(2),
     marginLeft: theme.spacing(1),
@@ -31,10 +34,10 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function WeatherCards() {
-  const cards = [0, 1, 2, 3, 4];
   const classes = useStyles();
-
   const activeCount = useSelector(selectActiveCount);
+  const data = useSelector(showData);
+  const currentUnit = useSelector(selectTemperatureUnit);
 
   return (
     <Grid container className={classes.root}>
@@ -46,7 +49,7 @@ export default function WeatherCards() {
           transform: `translateX(${activeCount * -CARD_WIDTH + CARD_WIDTH}px)`,
         }}
       >
-        {cards.map((value, index) => (
+        {data.slice(0, 5).map((value, index) => (
           <Grid key={value} item>
             <Paper
               className={classes.paper}
@@ -55,9 +58,25 @@ export default function WeatherCards() {
                 transform: `scale(${index === activeCount ? 1.1 : 1})`,
               }}
             >
-              Temp: <br />
-              <br /> Date: <br /> <br />
-              {value}
+              <Typography variant="title" gutterBottom>
+                Temp:
+              </Typography>
+              <div>
+                {currentUnit === "Fahrenheit"
+                  ? Math.round(value[0].main.temp) + "°F"
+                  : Math.round(
+                      ((Math.round(value[0].main.temp) - 32) * 5) / 9
+                    ) + "°C"}
+              </div>
+              <br />
+              <Typography variant="title" gutterBottom>
+                Date:
+              </Typography>
+              <div>
+                {new Date(value[0].dt_txt).toLocaleDateString(
+                  ("en-us", { month: "short" })
+                )}
+              </div>
             </Paper>
           </Grid>
         ))}
