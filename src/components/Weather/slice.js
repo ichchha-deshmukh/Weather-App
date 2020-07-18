@@ -5,7 +5,6 @@ export const slice = createSlice({
   initialState: { data: null },
   reducers: {
     setWeatherData: (state, action) => {
-      console.log(state, action);
       state.data = action.payload;
     },
   },

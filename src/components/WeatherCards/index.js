@@ -50,7 +50,7 @@ export default function WeatherCards() {
         }}
       >
         {data.slice(0, 5).map((value, index) => (
-          <Grid key={value} item>
+          <Grid key={index} item>
             <Paper
               className={classes.paper}
               elevation={index === activeCount ? 7 : 0}
@@ -58,7 +58,7 @@ export default function WeatherCards() {
                 transform: `scale(${index === activeCount ? 1.1 : 1})`,
               }}
             >
-              <Typography variant="title" gutterBottom>
+              <Typography component="h1" variant="h6" gutterBottom>
                 Temp:
               </Typography>
               <div>
@@ -69,7 +69,7 @@ export default function WeatherCards() {
                     ) + "°C"}
               </div>
               <br />
-              <Typography variant="title" gutterBottom>
+              <Typography component="h1" variant="h6" gutterBottom>
                 Date:
               </Typography>
               <div>
