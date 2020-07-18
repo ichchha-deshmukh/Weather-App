@@ -2,18 +2,8 @@ import React from "react";
 import Chart from "react-google-charts";
 import "../BarChart/styles.css";
 
-export default function BarChart() {
-  const data = [
-    ["x-axis", "Temperature"],
-    ["23F", 23],
-    ["12F", 12],
-    ["18F", 18],
-    ["23F", 23],
-    ["12F", 12],
-    ["20F", 20],
-    ["18F", 18],
-    ["20F", 20],
-  ];
+export default function BarChart({ chartData = [] }) {
+  const data = [["Time", "Temperature"], ...chartData];
 
   const options = {
     vAxis: {
@@ -28,6 +18,7 @@ export default function BarChart() {
     width: "100%",
     height: "200px",
   };
+
   return (
     <div className="chart-wrapper ">
       <Chart chartType="ColumnChart" data={data} options={options} />

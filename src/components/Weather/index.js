@@ -22,7 +22,6 @@ export default function Weather() {
   const isWeatherDataLoaded = useSelector(isDataLoaded);
   useEffect(() => {
     getWeatherForecast().then((weatherData) => {
-      console.log("data", weatherData);
       dispatch(setWeatherData(weatherData));
     });
   }, [dispatch]);
