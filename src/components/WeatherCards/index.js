@@ -7,6 +7,8 @@ import { selectTemperatureUnit } from "../TemperatureConverter/slice";
 import { useSelector } from "react-redux";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
+import { useTheme } from "@material-ui/core/styles";
+import useMediaQuery from "@material-ui/core/useMediaQuery";
 import BarChart from "../BarChart";
 
 const CARD_WIDTH = 184;
@@ -36,6 +38,8 @@ const useStyles = makeStyles((theme) => ({
 
 export default function WeatherCards() {
   const classes = useStyles();
+  const theme = useTheme();
+  const isMobileScreen = useMediaQuery(theme.breakpoints.down("sm"));
   const activeCount = useSelector(selectActiveCount);
   const data = useSelector(showData);
   const currentUnit = useSelector(selectTemperatureUnit);
@@ -71,7 +75,9 @@ export default function WeatherCards() {
           className={classes.innerWrapper}
           style={{
             transform: `translateX(${
-              activeCount * -CARD_WIDTH + CARD_WIDTH
+              activeCount * -CARD_WIDTH +
+              CARD_WIDTH -
+              (isMobileScreen ? CARD_WIDTH / 2 + theme.spacing(2) : 0)
             }px)`,
           }}
         >
