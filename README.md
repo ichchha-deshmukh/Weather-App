@@ -1,4 +1,17 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app), using the [Redux](https://redux.js.org/) and [Redux Toolkit](https://redux-toolkit.js.org/) template.
+
+# Weather App
+This is weather app showing weather forecast. Developed by Ichchha Deshmukh.
+
+## Functionality
+
+### Temperature Conversion
+You can select the display temperature unit by toggling between Celsius and Fahrenheit.
+
+### Weather Cards
+Shows the weather forecast of 5 consecutive days.
+
+### Chart Representation
+Shows the complete day data of selected day. Hover on the bars to know the temperature of the hour.
 
 ## Available Scripts
 
