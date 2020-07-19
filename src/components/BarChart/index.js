@@ -17,6 +17,12 @@ export default function BarChart({ chartData = [] }) {
     legend: { position: "none" },
     width: "100%",
     height: "200px",
+    hAxis: {
+      textStyle: {
+        fontFamily: "Arial",
+        fontSize: 15,
+      },
+    },
   };
 
   return (
